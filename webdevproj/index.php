@@ -1,25 +1,35 @@
 <?php
+// Include the database configuration file
+include 'config/dbcon.php'; 
 
-include 'config/dbcon.php'; // Include your database connection script
-
-
+// Check if the "login" POST parameter is set
 if (isset($_POST['login'])) {
+    // Retrieve user input from the form
     $email = $_POST['email'];
-    $password = $_POST['pass']; // Ensure that your HTML input field for the password is named 'pass'
- 
-    // Ensure that $conn is properly defined in your 'config/dbcon.php' script
+    $password = $_POST['pass']; 
+    
+    // Construct a SQL query to select a user based on email and password
     $sql = "SELECT * FROM users WHERE email = '$email' AND pass = '$password'";
+    
+    // Execute the SQL query
     $select = mysqli_query($conn, $sql);
 
+    // Check if the query execution was successful
     if ($select) {
+        // Check if any rows were returned
         if (mysqli_num_rows($select) != 0) {
+            // User found, fetch user data and store user ID in a session
             $user = mysqli_fetch_array($select);
             $_SESSION['user_id'] = $user['id'];
+            
+            // Redirect the user to the admin dashboard
             header("Location: admin/dashboard.php");
         } else {
+            // Display a message for login failure
             echo "Failed to login";
         }
     } else {
+        // Display a database query error message
         echo "Database query error: " . mysqli_error($conn);
     }
 }
@@ -32,60 +42,23 @@ if (isset($_POST['login'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .login-container {
-            background-color: #f0f0f0;
-            border-radius: 5px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .login-container h1 {
-            text-align: center;
-        }
-
-        .login-container form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .login-container input {
-            margin: 5px 0;
-            padding: 10px;
-            width: 100%;
-        }
-
-        .login-container button {
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .login-container button:hover {
-            background-color: #0056b3;
-        }
+        /* Add your CSS styles here */
     </style>
 </head>
 <body>
 <div class="login-container">
     <h1>LOGIN</h1>
     <form action="index.php" method="POST">
+        <!-- Input field for email -->
         <input type="email" name="email" placeholder="Email" required autofocus>
+        
+        <!-- Input field for password -->
         <input type="password" name="pass" placeholder="Password" required>
+        
+        <!-- Submit button to trigger login -->
         <button type="submit" name="login">Login</button>
+        
+        <!-- Link to the registration page -->
         <a href='register.php' class="register-button"><center>Register</center></a>
     </form>
 </div>

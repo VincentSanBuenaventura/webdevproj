@@ -1,20 +1,23 @@
 <?php
+// Include the database configuration file
 include '../config/dbCon.php';
 
+// Check if the user is not authenticated (not logged in)
 if (!isset($_SESSION['user_id'])) {
+    // Redirect to the login page
     header("Location: ../index.php");
 }
 
-
+// Check if there's a "log" parameter in the URL
 if (isset($_GET['log'])) {
     if ($_GET['log'] == 'true') {
+        // Destroy the user session (log out)
         session_destroy();
+        // Redirect to the login page
         header("Location: ../index.php");
     }
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,8 +33,6 @@ if (isset($_GET['log'])) {
 </head>
 
 <body>
-
-
     <div class="container">
         <h1>Dashboard</h1>
         <a href="dashboard.php?log=true">Logout</a>
@@ -41,7 +42,7 @@ if (isset($_GET['log'])) {
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Username</th>
-                    <th scope="col">Email at</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Password</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
@@ -53,15 +54,14 @@ if (isset($_GET['log'])) {
 
             <tbody>
                 <?php
+                // Select all user records from the database
                 $sql = "SELECT * FROM users";
                 $select = mysqli_query($conn, $sql);
 
-
                 if (mysqli_num_rows($select) != 0) {
-
+                    // Loop through each user record and display it in the table
                     while ($row = mysqli_fetch_array($select)) {
-
-                        ?>
+                ?>
 
                         <tr>
                             <th scope="row">
@@ -91,19 +91,15 @@ if (isset($_GET['log'])) {
                             <td>
                                 <?php echo $row['country']; ?>
                             </td>
-                            
                         </tr>
 
-
-                        <?php
-
+                <?php
                     }
                 }
                 ?>
             </tbody>
         </table>
     </div>
-
 </body>
 
 </html>
