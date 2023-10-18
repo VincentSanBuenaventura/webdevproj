@@ -42,13 +42,10 @@ if (isset($_GET['log'])) {
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Username</th>
-                    <th scope="col">Email</th>
                     <th scope="col">Password</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Gender</th>
-                    <th scope="col">DOB</th>
-                    <th scope="col">Country</th>
+                    <th scope="col">Email</th>
+                   
+                    
                 </tr>
             </thead>
 
@@ -71,27 +68,14 @@ if (isset($_GET['log'])) {
                                 <?php echo $row['uname']; ?>
                             </td>
                             <td>
-                                <?php echo $row['email']; ?>
-                            </td>
-                            <th scope="row">
                                 <?php echo $row['pass']; ?>
-                            </th>
-                            <td>
-                                <?php echo $row['fname']; ?>
-                            </td>
-                            <td>
-                                <?php echo $row['lname']; ?>
+                                
                             </td>
                             <th scope="row">
-                                <?php echo $row['gender']; ?>
+                                <?php echo $row['email']; ?>
                             </th>
                             <td>
-                                <?php echo $row['dob']; ?>
-                            </td>
-                            <td>
-                                <?php echo $row['country']; ?>
-                            </td>
-                        </tr>
+                        </tr> 
 
                 <?php
                     }

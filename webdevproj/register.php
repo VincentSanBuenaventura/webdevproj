@@ -13,7 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $country = $_POST['country'];
 
   
-    $sql = "INSERT INTO users (uname, email, pass, fname, lname, gender, dob, country) VALUES ('$uname', '$email', '$password', '$fname', '$lname', '$gender', '$dob', '$country')";
+    $sql = "INSERT INTO users (uname, email, pass, fname, lname, gender, dob, country) VALUES
+     ('$uname', '$email', '$password', '$fname', '$lname', '$gender', '$dob', '$country')";
     if ($conn->query($sql) === TRUE) {
         echo "Registered Successfully";
     } else {

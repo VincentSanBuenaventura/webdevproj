@@ -43,24 +43,47 @@ if (isset($_POST['login'])) {
     <title>Login Page</title>
     <style>
         /* Add your CSS styles here */
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* This centers the form vertically on the page */
+        }
+
+        .login-container {
+            text-align: center;
+        }
+
+        form {
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
-<div class="login-container">
-    <h1>LOGIN</h1>
-    <form action="index.php" method="POST">
-        <!-- Input field for email -->
-        <input type="email" name="email" placeholder="Email" required autofocus>
+<div class="center-container">
+    <div class="login-container">
         
-        <!-- Input field for password -->
-        <input type="password" name="pass" placeholder="Password" required>
-        
-        <!-- Submit button to trigger login -->
-        <button type="submit" name="login">Login</button>
-        
-        <!-- Link to the registration page -->
-        <a href='register.php' class="register-button"><center>Register</center></a>
-    </form>
+        <form action="index.php" method="POST">
+        <h1>LOGIN</h1>
+            <!-- Input field for email -->
+            <input type="email" name="email" placeholder="Email" required autofocus>
+            <br>
+            <br>
+            <!-- Input field for password -->
+            <input type="password" name="pass" placeholder="Password" required>
+            <br>
+            <br>
+            <!-- Submit button to trigger login -->
+            <button type="submit" name="login">Login</button>
+            <br>
+            <br>
+            <!-- Link to the registration page -->
+            <a href='register.php' class="register-button">Register</a>
+        </form>
+    </div>
 </div>
 </body>
 </html>
