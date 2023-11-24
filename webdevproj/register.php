@@ -6,15 +6,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $uname = $_POST['uname'];
     $email = $_POST['email'];
     $password = $_POST['pass'];
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $gender = $_POST['gender'];
-    $dob = $_POST['dob'];
-    $country = $_POST['country'];
-
+    
   
-    $sql = "INSERT INTO users (uname, email, pass, fname, lname, gender, dob, country) VALUES
-     ('$uname', '$email', '$password', '$fname', '$lname', '$gender', '$dob', '$country')";
+    $sql = "INSERT INTO users (uname, email, pass) VALUES
+     ('$uname', '$email', '$password')";
     if ($conn->query($sql) === TRUE) {
         echo "Registered Successfully";
     } else {
@@ -84,29 +79,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="pass">Password:</label>
         <input type="password" id="pass" name="pass" required>
 
-        <label for="fname">First Name:</label>
-        <input type="text" id="fname" name="fname" required>
-
-        <label for="lname">Last Name:</label>
-        <input type="text" id="lname" name="lname" required>
-
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-        </select>
-
-        <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" name="dob" required>
-
-        <label for="country">Country:</label>
-        <input type="text" id="country" name="country" required>
-
         <button type="submit" name="register">Register</button>
 
         <div class="text">
-        <h3>Already have an account? <a href='index.php'><br>Login now</a></h3>
+        <a href='index.php'><br>Login now</a>
       </div>
     </form>
 </body>
